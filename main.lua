@@ -50,18 +50,21 @@ function love.update(dt)
             g.angle = math.rad(360)-g.angle
         end
         for _, brick in pairs(g.Bricks) do
-            if g.ball_y - 8 <= brick.y + 20 and g.ball_x - 8 >= brick.x and g.ball_x + 8 <= brick.x + 90 then
+            if g.ball_y - 4 > brick.y and g.ball_y + 4 < brick.y + 20 and g.ball_x - 4 < brick.x + 90 and g.ball_x - 4 > brick.x then
+                g.angle = math.rad(540)-g.angle
+                table.remove(g.Bricks,_)
+                g.score = g.score + 10
+            elseif g.ball_y - 4 > brick.y and g.ball_y + 4 < brick.y + 20 and g.ball_x + 4 > brick.x and g.ball_x + 4 < brick.x + 90 then
+                g.angle = math.rad(540)-g.angle
+                table.remove(g.Bricks,_)
+                g.score = g.score + 10
+            
+            elseif g.ball_y - 4 < brick.y + 20 and g.ball_y + 4 > brick.y and g.ball_x - 4 > brick.x and g.ball_x + 4 < brick.x + 90 then
                 g.angle = math.rad(360)-g.angle
                 table.remove(g.Bricks,_)
                 g.score = g.score + 10
-            end
-            if g.ball_y - 8 >= brick.y and g.ball_y + 8 <= brick.y + 20 and g.ball_x - 8 <= brick.x + 90 and g.ball_x - 8 >= brick.x then
-                g.angle = math.rad(540)-g.angle
-                table.remove(g.Bricks,_)
-                g.score = g.score + 10
-            end
-            if g.ball_y - 8 >= brick.y and g.ball_y + 8 <= brick.y + 20 and g.ball_x + 8 >= brick.x and g.ball_x + 8 <= brick.x + 90 then
-                g.angle = math.rad(540)-g.angle
+            elseif g.ball_y + 4 > brick.y and g.ball_y - 4 < brick.y + 20 and g.ball_x - 4 > brick.x and g.ball_x + 4 < brick.x + 90 then
+                g.angle = math.rad(360)-g.angle
                 table.remove(g.Bricks,_)
                 g.score = g.score + 10
             end
